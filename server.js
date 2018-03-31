@@ -1,7 +1,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var path = require("path")
+var path = require("path");
 var db = require("./models");
+var request = require("request");
 
 var app = express();
 // Serve static content for the app from the "public" directory in the application directory.
@@ -18,7 +19,14 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-// var routes = require("./controllers/burgers_controller");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+//Set Mongoose to leverage built in JS ES6 pROMISES
+//Connect to MongoDb
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+    useMongoClient: true
+});
 
 // app.use(routes);
 // app.use("/", routes);
