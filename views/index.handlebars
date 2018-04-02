@@ -6,10 +6,12 @@
 <div class="container">
     <div class="row"> 
         {{#each recipe}}
-        <div class="recipe-group">
+        <div class="recipe-group center-block text-center">
             <h2 class="recipe-title">{{title}}</h2>
-            <a class="recipeLink" href="{{recipe}}">{{recipe}}</a>
-            <img src="{{imgLink}}" alt="Food Image">
+            <img src="{{imgLink}}" alt="Food Image" width="400" height="400">
+            <div class="contain-link">
+            <a class="recipeLink" href="{{recipe}}" target="_blank">{{recipe}}</a>
+            </div>
         </div>
         {{/each}}
     </div>
