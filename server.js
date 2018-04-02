@@ -16,13 +16,12 @@ app.set("view engine", "handlebars");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(express.static("public/"));
 app.use(express.static(__dirname + '/public/'));
 app.use(express.static("."));
 
 
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 
 // Hook mongojs configuration to the db variable
 var db = require("./models");
@@ -40,7 +39,7 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
 // Listen on port 3000
-app.listen(3000, function() {
+app.listen(8080, function() {
   console.log("App running on port 3000!");
 });
 

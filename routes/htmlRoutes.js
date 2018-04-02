@@ -6,6 +6,11 @@ var db= require("../models");
 
 module.exports = function(app){
     app.get("/", function(req, res){
-        res.redirect("/scrape");
+        db.Recipe.find({}).then(function(data){
+            var hbsObj= {recipe : data};
+            res.render("index", hbsObj);
+        }).catch(function(err){
+            res.json(err);
+        })
     });
 }
