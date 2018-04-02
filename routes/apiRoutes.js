@@ -7,7 +7,7 @@ var express = require("express");
 
 module.exports = function(app) {
   app.get("/scrape", function(req, res) {
-    request("https://tasty.co/", function(err, res, html) {
+    request("https://tasty.co/", function(err, result, html) {
       var $ = cheerio.load(html);
       var results = [];
       $("a.recipe-item").each(function(i, el) {
@@ -26,9 +26,6 @@ module.exports = function(app) {
       });
       db.Recipe.create(results)
         .then(function(dbRecipe) {
-          //db Recipe is array of scraped data objects
-          // var hbsObj = { Recipe : dbRecipe };
-          //  res.render("index", hbsObj);
           res.json(dbRecipe);
         })
         .catch(function(err) {
