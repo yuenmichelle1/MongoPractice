@@ -28,6 +28,7 @@ body {
 }
 button {
   border-radius: 10px;
+  margin-top: 5px;
 }
 .scrape-new {
   margin-top: 5px;
