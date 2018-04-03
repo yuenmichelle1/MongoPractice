@@ -13,4 +13,12 @@ module.exports = function(app){
             res.json(err);
         })
     });
+    app.get("/saved", function(req, res){
+        db.Recipe.find({saved: true}).then(function(data){
+            var hbsObj = {SavedRecipe: data};
+            res.render("savedRecipes", hbsObj);
+        }).catch(function(err){
+            res.json(err);
+        })
+    })
 }

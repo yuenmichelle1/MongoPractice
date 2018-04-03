@@ -34,4 +34,11 @@ module.exports = function(app) {
         });
     });
   });
+
+  app.put("/api/saveRecipe/:id", function(req,res){
+    var recipeId = req.params.id;
+    db.Recipe.findByIdAndUpdate({_id: recipeId}, req.body).then(function(dbRecipe){
+      res.json(dbRecipe);
+    })
+  })
 };
