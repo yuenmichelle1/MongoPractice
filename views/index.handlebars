@@ -1,12 +1,24 @@
-
 <div class="container">
-    <div class="row"> 
+    <div class="row">
         {{#each recipe}}
-        <div class="recipe-group center-block text-center">
-            <h2 class="recipe-title">{{title}}</h2>
-            <img src="{{imgLink}}" alt="Food Image" width="400" height="400">
-            <div class="contain-link">
-            <a class="recipeLink" href="{{recipe}}" target="_blank">{{recipe}}</a>
+        <div class="recipe-group center-block text-center col-md-12">
+            <h3 class="recipe-title">{{title}}</h3>
+            <div class="contain-link row">
+                <div class="col-md-6 image">
+                    <img src="{{imgLink}}" alt="Food Image" class="food-img" width="250" height="200">
+                </div>
+                <div class="col-md-6 buttons">
+                    <button class="center-block text-center">
+                        <a class="recipeLink" href="{{recipe}}" target="_blank">
+                            <h4>Click for the Recipe!</h4>
+                        </a>
+                    </button>
+                    <button class="favorite center-block text-center">
+                        <h4>
+                            Save this Recipe!
+                        </h4>
+                    </button>
+                </div>
             </div>
         </div>
         {{/each}}

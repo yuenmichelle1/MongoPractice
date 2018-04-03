@@ -16,8 +16,8 @@ module.exports = function(app) {
           .find("amp-img")
           .attr("src");
         var title = $(el)
-          .find("h6")
-          .text();
+          .find("amp-img")
+          .attr("alt");
         results.push({
           recipe,
           imgLink,
