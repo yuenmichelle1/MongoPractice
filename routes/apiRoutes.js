@@ -10,7 +10,7 @@ module.exports = function(app) {
     request("https://tasty.co/", function(err, result, html) {
       var $ = cheerio.load(html);
       var results = [];
-      var scrapeCounter =0;
+      var scrapeCounter = 0;
       $("a.recipe-item").each(function(i, el) {
         var recipe = $(el).attr("href");
         var imgLink = $(el)
@@ -35,10 +35,26 @@ module.exports = function(app) {
     });
   });
 
-  app.put("/api/saveRecipe/:id", function(req,res){
+  app.put("/api/saveRecipe/:id", function(req, res) {
     var recipeId = req.params.id;
-    db.Recipe.findByIdAndUpdate({_id: recipeId}, req.body).then(function(dbRecipe){
+    db.Recipe.findByIdAndUpdate({ _id: recipeId }, req.body).then(function(
+      dbRecipe
+    ) {
       res.json(dbRecipe);
-    })
-  })
+    });
+  });
+
+  app.post("/api/recipes/:id", function(req, res) {
+    db.Note.create(req.body)
+      .then(function(dbNote) {
+        return db.Recipe.findByIdAndUpdate(
+          { _id: req.params.id },
+          { note: dbNote._id },
+          { new: true }
+        );
+      })
+      .then(function(dbRecipe) {
+        res.json(dbRecipe);
+      });
+  });
 };

@@ -26,11 +26,19 @@
                             <h4>Click for the Recipe!</h4>
                         </a>
                     </button>
-                    <button class="favorite center-block text-center" data-id="{{_id}}">
+                    {{#if saved}}
+                    <button class="favorite center-block text-center" data-id="{{_id}}" data-saved="{{saved}}">
                         <h4>
-                            Save this Recipe!
+                           ♥ Saved to Your Recipes
                         </h4>
                     </button>
+                    {{else}}
+                    <button class="favorite center-block text-center" data-id="{{_id}}" data-saved="{{saved}}">
+                        <h4>
+                            Add to Saved Recipes?
+                        </h4>
+                    </button>
+                    {{/if}}
                 </div>
             </div>
         </div>

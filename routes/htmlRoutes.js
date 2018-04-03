@@ -21,4 +21,15 @@ module.exports = function(app){
             res.json(err);
         })
     })
+    //show all notes associated to the 
+  app.get("/savedRecipe/:id", function(req, res) {
+    db.Recipe.findById({ _id: req.params.id })
+      .populate("note")
+      .then(function(dbRecipe) {
+        res.json(dbRecipe);
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
 }
