@@ -23,8 +23,8 @@ var PORT = process.env.PORT || 3000;
 // Hook mongojs configuration to the db variable
 var db = require("./models");
 
-require("./routes/htmlRoutes.js")(app);
-require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
 
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
