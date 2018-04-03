@@ -1,0 +1,17 @@
+.jumbotron {
+  text-shadow: white 0.3em 0.3em 0.3em;
+  font-family: 'Pacifico', cursive;
+  background: transparent;
+  background: url("../images/cooking.jpg") no-repeat center center;
+  color: navy;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 80px;
+  font-family: 'Pacifico', cursive;
+}
