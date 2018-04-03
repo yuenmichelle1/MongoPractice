@@ -28,12 +28,14 @@ module.exports = function(app) {
       });
       db.Recipe.create(results)
         .then(function(dbRecipe) {
+          console.log(dbRecipe);
           res.json(scrapeCount);
         })
         .catch(function(err) {
           if (err.code === 11000) {
             console.log("duplicated");
-            res.json(scrapeCount)
+            // console.log(err);
+            res.json(err.index)
           } else {
             res.json(err);
           }
