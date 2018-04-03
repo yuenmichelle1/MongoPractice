@@ -1,3 +1,14 @@
+<div class="jumbotron text-center">
+    <div class="overlay">
+    </div>
+    <div class="background-image">
+    </div>
+    <div class="caption">
+        <h1>Mongo Scraper</h1>
+        <p>Recipe Edition</p>
+       <h2>Saved Recipes</h2>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         {{#each SavedRecipe}} {{#if this.saved}}
@@ -13,9 +24,14 @@
                             <h4>Click for the Recipe!</h4>
                         </a>
                     </button>
-                    <button class="favorite center-block text-center">
+                    <button class="unfavorite center-block text-center">
                         <h4>
-                            Save this Recipe!
+                            Delete Recipe From Saved!
+                        </h4>
+                    </button>
+                    <button class="addNote center-block text-center">
+                        <h4>
+                            Add Notes to this Recipe!
                         </h4>
                     </button>
                 </div>

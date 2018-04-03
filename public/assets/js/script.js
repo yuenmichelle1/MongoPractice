@@ -7,7 +7,7 @@ $(".favorite").on("click", function(event){
         }
     }).then(function(){
         console.log("saved Recipe");
-        // location.reload();
+        location.reload();
     })
 })
 $(".scrape-new ").on("click", function(event){
