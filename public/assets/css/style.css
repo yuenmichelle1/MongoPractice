@@ -29,6 +29,13 @@ body {
 button {
   border-radius: 10px;
 }
+.scrape-new {
+  margin-top: 5px;
+  background-color: navy;
+  border-color:  navy;
+  height: 40px;
+  border-radius: 10px;
+}
 .recipe-group {
   border: black 1px solid;
   border-radius: 10px;

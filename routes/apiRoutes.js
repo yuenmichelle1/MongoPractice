@@ -10,6 +10,7 @@ module.exports = function(app) {
     request("https://tasty.co/", function(err, result, html) {
       var $ = cheerio.load(html);
       var results = [];
+      var scrapeCounter =0;
       $("a.recipe-item").each(function(i, el) {
         var recipe = $(el).attr("href");
         var imgLink = $(el)
