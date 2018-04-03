@@ -3,8 +3,18 @@ var mongoose= require("mongoose");
 var Schema = mongoose.Schema;
 
 var RecipeSchema = new Schema({
+    //recipe is link to recipe
     recipe: {
-        type: String
+        type: String,
+        validate: [
+            function(input){
+                Recipe.find({recipe: input}, function (err, docs){
+                    if (err) {
+                        next();
+                    }
+                })
+            }
+        ]
     }, 
     imgLink: {
         type: String
