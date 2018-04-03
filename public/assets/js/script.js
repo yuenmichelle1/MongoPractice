@@ -20,6 +20,7 @@ $(".favorite").on("click", function(event) {
 
 $(".scrape-new ").on("click", function(event) {
   $.get(`/scrape`, function(data) {
+    alert(`${data} recipes have been added!`);
     location.reload();
   });
 });

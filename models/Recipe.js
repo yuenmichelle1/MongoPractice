@@ -6,15 +6,7 @@ var RecipeSchema = new Schema({
     //recipe is link to recipe
     recipe: {
         type: String,
-        validate: [
-            function(input){
-                Recipe.find({recipe: input}, function (err, docs){
-                    if (err) {
-                        next();
-                    }
-                })
-            }
-        ]
+        unique: true
     }, 
     imgLink: {
         type: String
