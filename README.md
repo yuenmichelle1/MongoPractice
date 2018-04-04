@@ -34,9 +34,10 @@ A recipe scraper app using `Cheerio`, `Request`, `Mongo`, `Mongoose`, `Express`,
 * For each Saved Recipe: 
   * you can `Delete Recipe From Saved!` which  deletes recipe from your Saved Recipes Page.
   * you can `Click for the Recipe!` which opens a new tab for the Recipe. 
-  * you can also `Add Notes to this Recipe!` which opens a modal popup of existing notes for the recipe. 
+  * you can also `Add Notes to this Recipe!` which opens a modal popup of existing notes for the recipe.  
   
   > ![modalNote](./public/assets/images/modalNote.PNG)
+  > ![noteAdded](./public/assets/images/noteAdded.PNG)
     
 
     
