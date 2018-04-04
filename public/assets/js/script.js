@@ -21,7 +21,7 @@ $(document).ready(function() {
 
   $(".scrape-new").on("click", function(event) {
     $.get(`/scrape`, function(data) {
-      alert(`${data} recipes have been added!`);
+      alert(`Scrape Complete.`);
       location.reload();
     });
   });
