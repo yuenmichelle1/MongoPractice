@@ -34,7 +34,6 @@ module.exports = function(app) {
         .catch(function(err) {
           if (err.code === 11000) {
             console.log("duplicated");
-            // console.log(err);
             res.json(err.index)
           } else {
             res.json(err);
@@ -52,13 +51,13 @@ module.exports = function(app) {
       res.json(dbRecipe);
     });
   });
-
+//display Note
   app.post("/api/recipes/:id", function(req, res) {
     db.Note.create(req.body)
       .then(function(dbNote) {
         return db.Recipe.findByIdAndUpdate(
           { _id: req.params.id },
-          { note: dbNote._id },
+          { $push : { note: dbNote._id }},
           { new: true }
         );
       })
