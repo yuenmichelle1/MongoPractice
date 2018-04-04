@@ -57,14 +57,18 @@ $(document).ready(function() {
       $(".btn.save").data("recipe", noteData);
       renderNote(data);
       $(".btn.save").on("click", function(event) {
-        var noteInfo = $(".bootbox-body textarea").val().trim();
+        var noteInfo = $(".bootbox-body textarea")
+          .val()
+          .trim();
         console.log(`${noteInfo} I've been clicked`);
         var recipeId = $(this).data("recipe")._id;
         console.log(recipeId);
         if (noteInfo) {
-          $.post(`/api/recipes/${recipeId}`, {body: noteInfo}).then(function() {
-            bootbox.hideAll();
-          });
+          $.post(`/api/recipes/${recipeId}`, { body: noteInfo }).then(
+            function() {
+              bootbox.hideAll();
+            }
+          );
         }
       });
     });
@@ -76,31 +80,38 @@ function renderNote(data) {
   var currentNote;
   if (data.note.length < 1) {
     // If we have no notes, just display a message explaing this
-    currentNote = 
-      `<li class='list-group-item'>
+    currentNote = `<li class='list-group-item'>
       No notes for this article yet.
-      </li>`
+      </li>`;
     notesToRender.push(currentNote);
   } else {
     // If we do have notes, go through each one
     for (var i = 0; i < data.note.length; i++) {
       // Constructs an li element to contain our noteText and a delete button
       currentNote = $(
-        [
-          "<li class='list-group-item note'>",
-          data.note[i].body,
-          "<button class='btn btn-danger note-delete'>X</button>",
-          "</li>"
-        ].join("")
+        `<li class='list-group-item note'>
+          ${data.note[i].body}
+          <button class='btn btn-danger note-delete' data-noteid="${data.note[i]._id}" data-recipeid="${data._id}">X</button>
+          </li>`
       );
-      // Store the note id on the delete button for easy access when trying to delete
-      currentNote.children("button").data("_id", data.note[i]._id);
       // Adding our currentNote to the notesToRender array
       notesToRender.push(currentNote);
     }
   }
   // Now append the notesToRender to the note-container inside the note modal
   $(".note-container").append(notesToRender);
+  $(".note-delete").on("click", function(event){
+    var noteId= $(this).data("noteid");
+    var recipeId= $(this).data("recipeid");
+    console.log(noteId);
+    console.log(`recipe ${recipeId}`);
+    console.log(`/api/recipes/${recipeId}/note/${noteId}`)
+    $.ajax(`/api/recipes/${recipeId}/note/${noteId}`,{
+      type: "DELETE",
+    }).then(function(data){
+      bootbox.hideAll();
+    })
+  })
 }
 
 function unfaveRecipe(id) {
@@ -114,29 +125,3 @@ function unfaveRecipe(id) {
     location.reload();
   });
 }
-
-// function getNotes(id) {
-//   $.get(`/savedRecipe/${id}`, function(data) {
-//     var modalText = 
-//       `<div class='container-fluid text-center'>
-//       <h4>Notes For Recipe: 
-//       ${id}
-//       </h4>
-//       <hr />
-//       <ul class='list-group note-container'>
-//       </ul>
-//       <textarea placeholder='New Note' rows='4' cols='60'></textarea>
-//       <button class='btn btn-success save' id='saveNotes'>Save Note</button>
-//       </div>`;
-//     bootbox.dialog({
-//       message: modalText,
-//       closeButton: true
-//     });
-//     var noteData = {
-//       Recipe_id: id,
-//       note: data.note || []
-//     };
-//     $(".btn.save").data("recipe", noteData);
-//     renderNote(data);
-//   });
-// }

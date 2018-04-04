@@ -34,14 +34,13 @@ module.exports = function(app) {
         .catch(function(err) {
           if (err.code === 11000) {
             console.log("duplicated");
-            res.json(err.index)
+            res.json(err.index);
           } else {
             res.json(err);
           }
         });
     });
   });
-
 
   app.put("/api/saveRecipe/:id", function(req, res) {
     var recipeId = req.params.id;
@@ -51,13 +50,13 @@ module.exports = function(app) {
       res.json(dbRecipe);
     });
   });
-//display Note
+  //display Note
   app.post("/api/recipes/:id", function(req, res) {
     db.Note.create(req.body)
       .then(function(dbNote) {
         return db.Recipe.findByIdAndUpdate(
           { _id: req.params.id },
-          { $push : { note: dbNote._id }},
+          { $push: { note: dbNote._id } },
           { new: true }
         );
       })
@@ -65,4 +64,14 @@ module.exports = function(app) {
         res.json(dbRecipe);
       });
   });
+  app.delete("/api/recipes/:recipeId/note/:id", function(req, res){
+    var recipeId= req.params.recipeId;
+    var noteId= req.params.id;
+    db.Note.findByIdAndRemove({_id: noteId}).then(function(dbNote){
+      db.Recipe.findByIdAndUpdate({_id: recipeId}, {$pullAll : {note: [{_id: noteId}]}}, {new: true}).then(function(dbRecipe){
+       console.log(dbRecipe);
+       res.json(dbRecipe);
+      })
+    })
+  })
 };
