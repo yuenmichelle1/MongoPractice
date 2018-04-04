@@ -6,7 +6,8 @@ var RecipeSchema = new Schema({
     //recipe is link to recipe
     recipe: {
         type: String,
-        unique: true
+        unique: true,
+        require: true
     }, 
     imgLink: {
         type: String
