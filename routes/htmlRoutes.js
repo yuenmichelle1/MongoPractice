@@ -7,7 +7,8 @@ var db= require("../models");
 module.exports = function(app){
     app.get("/", function(req, res){
         db.Recipe.find({}).then(function(data){
-            var hbsObj= {recipe : data};
+            var newData = data.reverse();
+            var hbsObj= {recipe : newData};
             res.render("index", hbsObj);
         }).catch(function(err){
             res.json(err);
